@@ -1,0 +1,273 @@
+.profile-header {
+  background: #fff;
+  width: 100%;
+  display: flex;
+  height: auto;
+  position: relative;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1);
+  border-radius: .5em;
+}
+
+.profile-img {
+  float: left;
+  width: 340px;
+  height: 200px;
+}
+
+.profile-img img {
+  border-radius: 50%;
+  height: 230px;
+  width: 230px;
+  border: .2em solid #fff;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 50px;
+  top: 20px;
+  z-index: 5;
+  background: #fff;
+  object-fit: cover;
+}
+
+.profile-nav-info {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 60px;
+}
+
+.profile-nav-info h3 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.profile-nav-info .cargo {
+  display: flex;
+  font-weight: bold;
+  color: #777;
+}
+
+.profile-nav-info .cargo p {
+  margin-right: 5px;
+}
+
+
+
+.main-bd {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding-right: .5em;
+  background: #fff;
+  border-radius: .5em;
+}
+
+.profile-side {
+  width: 400px;
+  height: 100%;
+  background: #fff;
+  margin-left: .5em;
+  border-right:.1em solid #ebe5ff ;
+  z-index: 99;
+}
+.conteudo-side{
+  padding-top: 10%;
+  margin-bottom: 1em;
+}
+
+.profile-side p {
+  margin-bottom: 1em;
+  color: #333;
+  font-size: 16px;
+}
+
+.profile-btn {
+  display: flex;
+  justify-content: center;
+}
+
+
+.edit-btn {
+  border: 0;
+  padding:  1em 5em;
+  width: 100%;
+  border-radius: .5em;
+  border: 1px solid #005AAD;
+  color: #005AAD;
+  font-size: 1rem;
+  margin: 5px 2px;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 10px;
+  background: none;
+}
+
+
+.edit-btn:hover {
+  background: #0059ad52;
+  border: 1px solid #005AAD;
+  color: #ffffff;
+}
+
+.nav-profile {
+  width: 100%;
+  z-index: -1;
+}
+
+.nav-profile ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  font-weight: bold;
+  height: 40px;
+  background: #fff;
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.3);
+  
+}
+
+.nav-profile ul li {
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-profile ul li:hover{
+  box-shadow: 0px -3px 0px #7ebffc inset;
+}
+.nav-profile ul li.active{
+  box-shadow: 0px -3px 0px #005AAD inset;
+}
+
+.profile-body {
+  width: 100%;
+  z-index: -1;
+}
+
+.tab-page {
+  display: none;
+}
+
+.tab-page {
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: #fff;
+  border-bottom-right-radius: .5em;
+}
+
+.tab-page h1 {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+@media (max-width: 1100px) {
+  .profile-side {
+    width: 250px;
+    padding: 90px 15px 20px;
+  }
+
+  .profile-img img {
+    height: 200px;
+    width: 200px;
+    left: 50px;
+    top: 50px;
+  }
+}
+
+@media (max-width: 900px) {
+
+
+  .profile-header {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .profile-img {
+    float: left;
+    width: 100%;
+    height: 200px;
+  }
+
+  .profile-img img {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    left: 0px;
+  }
+
+  .profile-nav-info {
+    text-align: center;
+    margin-top: 1em;
+  }
+
+
+  .main-bd {
+    flex-direction: column;
+    padding-right: 0;
+    background: none;
+    
+  }
+
+  .profile-side {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin: 5px 0;
+    border-radius: .5em;
+  }
+
+  .profile-nav-info .cargo {
+    justify-content: center;
+  }
+  .nav-profile ul{
+    border-top-left-radius: .5em;
+    border-top-right-radius: .5em;
+  }
+  .tab-page{
+    border-bottom-left-radius: .5em;
+    border-bottom-right-radius: .5em;
+  }
+}
+
+@media (max-width: 400px) {
+  .profile-header h3 {
+  }
+
+  .profile-option {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 15px;
+    top: 83%;
+  }
+
+  .profile-option .notification .alert-message {
+    top: -3px;
+    right: -4px;
+    padding: 4px;
+    height: 15px;
+    width: 15px;
+    font-size: 0.7rem;
+  }
+
+  .profile-nav-info h3 {
+    font-size: 1.9rem;
+  }
+
+  .profile-nav-info .cargo p{
+    font-size: 0.7rem;
+  }
+}
+
+.tab-page h1 {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}

@@ -1,0 +1,155 @@
+/* Estilos para a coluna da esquerda */
+.projeto {
+    display: flex;
+    gap: 20px;
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
+  
+  .projeto-info {
+    margin-bottom: 20px;
+  }
+  
+  .projeto-participantes {
+    display: flex;
+    align-items: center;
+  }
+  
+  .projeto-participantes span {
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
+    margin-right: 10px;
+  }
+  
+  .projeto-participantes button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .projeto-tarefas {
+    display: flex;
+    gap: 20px;
+    flex: 1; /* Adicione esta linha para ocupar o espaço restante */
+  }
+  
+  /* Estilos para a coluna da direita */
+  .detalhes-tarefa {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 20px;
+    flex-basis: 30%; /* Adicione esta linha para definir o tamanho da coluna */
+  }
+  
+  .coluna-projeto {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .coluna-projeto-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .coluna-projeto-titulo__texto {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .coluna-projeto-titulo__opcoes {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #aaa;
+  }
+  
+  .tarefa {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-bottom: 10px;
+    cursor: grab;
+  }
+  
+  .tarefa__tags {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .tarefa__tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: #fff;
+    margin-right: 5px;
+  }
+  
+  .tarefa__tag--copywriting {
+    background-color: #007bff;
+  }
+  
+  .tarefa__tag--ui-design {
+    background-color: #28a745;
+  }
+  
+  .tarefa__tag--illustration {
+    background-color: #ffc107;
+  }
+  
+  .tarefa__opcoes {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #aaa;
+  }
+  
+  .tarefa p {
+    margin-bottom: 15px;
+  }
+  
+  .tarefa__estatisticas span {
+    margin-right: 15px;
+  }
+  
+  /* Estilos adicionais para a coluna da direita */
+  .progresso-tag {
+    margin-bottom: 20px;
+  }
+  
+  .progresso-tag h2 {
+    margin-bottom: 10px;
+  }
+  
+  .progresso-tag p {
+    margin-bottom: 10px;
+  }
+  
+  .progresso-tag progress {
+    width: 100%;
+  }
+  
+  .atividade-tarefa h2 {
+    margin-bottom: 10px;
+  }
+  
+  .atividade-tarefa ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .atividade-tarefa ul li {
+    margin-bottom: 5px;
+  }
+  

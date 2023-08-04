@@ -1,0 +1,44 @@
+/* selectModules.css */
+
+.select-sections {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .titulo-label {
+    font-size: 12px;
+  }
+  
+  .selects-styles {
+    display: flex;
+  }
+  
+  .select-style {
+    flex: 1;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 300;
+    transition: border-color 0.3s; /* Adicionamos uma transição para suavizar a mudança de cor */
+    outline: none; /* Removemos a borda preta quando o select está em foco */
+    cursor: pointer; /* Alteramos o cursor para indicar que é clicável */
+  }
+  
+  /* Estilização quando o cursor está sobre o select */
+  .select-style:hover {
+    border-color: rgb(16, 115, 97); /* Cor de hover desejada */
+  }
+  
+  /* Estilização quando o select está em foco */
+  .select-style:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Estilização quando o select está ativo (pressionado) */
+  .select-style:active {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+  }
+  

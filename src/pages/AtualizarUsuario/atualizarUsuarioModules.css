@@ -1,0 +1,33 @@
+
+.layout-atualiar-usuario{
+    background: #fff;
+    width: 100%;
+    margin-top: 1.2em;
+    padding: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+.container-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide a largura em duas colunas de tamanho igual */
+  grid-row: auto;
+  gap: 20px; /* Define um espaço entre as colunas */
+}
+
+.container-form >div{
+  margin-top: 1em;
+
+}
+.titulo-form{
+    font-size: 16;
+}
+.subtitulo-form{
+    font-size: 14px;
+}
+
+  /* Estilos para os botões */
+  .container-botao-atualizar{
+    width: 15%;
+  }
+
+  

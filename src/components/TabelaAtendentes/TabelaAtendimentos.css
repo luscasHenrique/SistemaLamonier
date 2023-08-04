@@ -1,0 +1,40 @@
+/* Estilização da tabela */
+.table {
+    width: 100%;
+  }
+  
+  /* Estilo do cabeçalho da tabela */
+  .table thead th {
+    padding: 12px;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  /* Estilo das células de dados na tabela */
+  .table tbody td {
+    padding: 10px;
+    border-bottom: none;
+  }
+  
+  /* Estilo do corpo da tabela */
+  .table tbody {
+  }
+  
+  /* Estilo do título da tabela */
+  .table h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Estilo das células da primeira coluna */
+  .table td:first-child {
+    text-align: left;
+  }
+  
+  /* Estilo da última linha da tabela (total) */
+  .table tbody tr:last-child {
+    font-weight: bold;
+  }
+  
