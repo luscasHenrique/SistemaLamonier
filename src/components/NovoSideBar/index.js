@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IoIosArrowBack, IoIosPerson,IoIosSearch, IoIosArrowDown,IoIosNotifications,  IoIosDocument, IoIosCalendar, IoMdStats, IoIosSettings, IoIosInformationCircle, IoIosLogOut, IoIosHome, IoIosPersonAdd, IoIosRefresh } from 'react-icons/io';
 import { IconContext } from "react-icons";
 import "./menuSidebarModules.css";
-import LogoLIFE from './Logo_LIFE.png';
+import LogoLamonier from './LogoLamonier.jpg';
 
 import { Context } from '../../context/UserContext';
 
@@ -115,7 +115,7 @@ const SidebarMenu = () => {
               {/* Adicionando a imagem da logo */}
               <img
                 className="logo-img"
-                src={LogoLIFE}
+                src={LogoLamonier}
                 alt="Logo"
               />
             </div>
@@ -236,10 +236,9 @@ const SidebarMenu = () => {
                     </Link>
                   </li> */}
                   <li>
-                    <Link to="/login">
-                    <IoIosLogOut />
-                      <span className="text" onClick={sair}>Logout</span>
-                    </Link>
+                      <Link onClick={() => { logout(); }}>Sair
+                      <IoIosLogOut />
+                      </Link>
                   </li>
                 </ul>
               </div>

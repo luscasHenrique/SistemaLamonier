@@ -2,6 +2,7 @@ import './Login.css';
 
 import Inputs from "../../components/Inputs"
 import { useState, useContext } from 'react';
+import LogoLamonier from './LogoLamonier.jpg';
 
 // Context
 import { Context } from '../../context/UserContext';
@@ -27,7 +28,7 @@ function Login(){
        
           <img
               className="logo-img"
-              // src={LogoConnect}
+              src={LogoLamonier}
               alt="Logo"
           />
 
