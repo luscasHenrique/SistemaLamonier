@@ -3,7 +3,7 @@ import'./TabelaAtendimentos.css';
 
 
 
-function TabelaAtendimentos() {
+function TabelaAtendimentos({ data }) {
   return (
     <Table responsive>
       <thead>
@@ -14,11 +14,19 @@ function TabelaAtendimentos() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Guilherme</td>
-          <td>Agosto</td>
-          <td>50</td>
-        </tr>
+        {Array.isArray(data) ? (
+          data.map((item, index) => (
+            <tr key={index}>
+              <td>{item.vendedor}</td>
+              <td>{item.datainicial}</td>
+              <td>10</td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan={3}>Carregando...</td>
+          </tr>
+        )}
       </tbody>
     </Table>
   );

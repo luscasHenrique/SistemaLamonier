@@ -1,11 +1,30 @@
 import './Login.css';
 
 import Inputs from "../../components/Inputs"
-function Login() {
+import { useState, useContext } from 'react';
+
+// Context
+import { Context } from '../../context/UserContext';
+
+function Login(){
+  const [user, setUser] = useState({});
+  const { login } = useContext(Context)
+
+  function handleChange(e) {
+    setUser({...user, [e.target.name]: e.target.value}); 
+    
+  };
+  function handleSubmit(e){
+    e.preventDefault()
+    login(user)
+  }
+
   return (
     <div className="container-login">
       <div className="card-login">
+      <form onSubmit={handleSubmit}>
         <div className="logo-login">
+       
           <img
               className="logo-img"
               // src={LogoConnect}
@@ -19,7 +38,7 @@ function Login() {
               type="email"
               name="email"
               placeholder="Digite aqui seu email.."
-              // handleOnChange={handleChange}
+              handleOnChange={handleChange}
           />
         </div>
         <div className="input-user-password">
@@ -28,12 +47,13 @@ function Login() {
               type="password"
               name='password'
               placeholder="Digite aqui sua senha.."
-              // handleOnChange={handleChange}
+              handleOnChange={handleChange}
           />
         </div>
         <div className="button-login">
         <Inputs type="submit" value="Logar" className="custom-button"/> 
         </div>
+        </form>
       </div>
 
     </div>

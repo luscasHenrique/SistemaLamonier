@@ -1,49 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './atualizarUsuarioModules.css';
 import Inputs from '../../components/Inputs';
 import Sidebar from '../../components/NovoSideBar';
 import UserCard from '../../components/UserCard';
 import StatusButton from '../../components/BotaoStatus';
+import api from '../../utils/api'
+
+import { Context } from '../../context/UserContext';
+
+import useFlashMessage from '../../hooks/useFlashMessage';
+import RoundedImage from '../../components/RoundedImage';
+
 
 function AtualizarUsuario() {
-  // Estado para armazenar os dados do formulário
-  const [formData, setFormData] = useState({
-    nome: '',
-    cpf: '',
-    rg: '',
-    telefone: '',
-    email: '',
-    isAdmin: false,
-    isUser: false,
-    // Adicione mais campos conforme necessário
-  });
-
-  // Função para lidar com a mudança nos campos do formulário
-  const handleChange = (event) => {
-    const { name, type, checked } = event.target;
-
-    // Verifica qual checkbox está sendo marcado
-    if (type === 'checkbox') {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        isAdmin: name === 'isAdmin' ? checked : !checked,
-        isUser: name === 'isUser' ? checked : !checked,
-      }));
-    } else {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [name]: event.target.value,
-      }));
+  const [user, setUser] = useState({})
+  const [preview, setPreview] = useState()
+  const [token] = useState(localStorage.getItem('token') || '')
+  const { setFlashMessage } = useFlashMessage()
+  
+  useEffect(() => {
+    api.get('/users/checkuser',{
+    headers: {
+      Authorization: `Bearer ${JSON.parse(token)}`
     }
-  };
+  })
+  .then((response) => {
+    setUser(response.data)
+  }).catch((error) => {
+    console.log(error)
+  })}, [token])
 
-  // Função para lidar com o envio do formulário
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Aqui você pode enviar os dados do formulário para o backend ou fazer outras ações necessárias
-    console.log(formData);
-  };
+  function handleOnChange(e){
+    setUser({...user, [e.target.name]: e.target.value});
+  }
+  
+  async function handleSubmit(e){
+    e.preventDefault()
 
+    let msgType = 'success'
+    const formData = new FormData()
+
+    await Object.keys(user).forEach((key) =>
+      formData.append(key, user[key]) 
+    )
+
+    const data = await api.patch(`users/edit/${user.id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`,
+        'Content-Type': 'multpart/form-data'
+      }
+    })
+    .then((response) => {
+      return response.data
+    })
+    .catch((err) => {
+      msgType = 'error'
+      return err.response.data
+    })
+
+    setFlashMessage(data.message, msgType)
+  }
   return (
     <div className="container-layout">
 
@@ -66,7 +82,7 @@ function AtualizarUsuario() {
         <div className="layout-atualiar-usuario">
           <h3 className="titulo-form">Editar Usuario</h3>
           <h5 className="subtitulo-form">Atualize as informações abaixo:</h5>
-          <form className="container-form">
+          <form className="container-form" onSubmit={handleSubmit}>
 
             <div className='container-inputs'>
                             <div className="">
@@ -74,8 +90,8 @@ function AtualizarUsuario() {
                   type="text"
                   label="Nome do Cliente"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  value={user.name}
+                  handleOnChange={handleOnChange}
                   placeholder="Digite o nome.."
                   required
                 />
@@ -85,8 +101,8 @@ function AtualizarUsuario() {
                   type="number"
                   label="CPF"
                   name="cpf"
-                  value={formData.cpf}
-                  onChange={handleChange}
+                  value={user.cpf}
+                   handleOnChange={handleOnChange}
                   required
                 />
               </div>
@@ -95,8 +111,8 @@ function AtualizarUsuario() {
                   type="number"
                   label="RG"
                   name="rg"
-                  value={formData.rg}
-                  onChange={handleChange}
+                  value={user.rg}
+                   handleOnChange={handleOnChange}
                   required
                 />
               </div>
@@ -105,8 +121,8 @@ function AtualizarUsuario() {
                   type="number"
                   label="Telefone"
                   name="fone"
-                  value={formData.fone}
-                  onChange={handleChange}
+                  value={user.fone}
+                  handleOnChange={handleOnChange}
                   required
                 />
               </div>
@@ -115,8 +131,8 @@ function AtualizarUsuario() {
                   type="email"
                   label="E-mail"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  value={user.email}
+                  handleOnChange={handleOnChange}
                   required
                 />
               </div>

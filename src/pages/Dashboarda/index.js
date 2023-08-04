@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import './Dashboard.css';
 
 // import components
@@ -8,10 +8,29 @@ import CardInfo from '../../components/CardInfo';
 import DateSelector from '../../components/DataSelector';
 import StatusButton from '../../components/BotaoStatus';
 import TabelaAtendimentos from '../../components/TabelaAtendentes';
-
+import { Context } from '../../context/UserContext';
+import api from '../../utils/api.js'
 
 
 function Dashboard() {
+
+    const [user, setUser] = useState([]); // Inicialize como array vazio
+    const [token] = useState(localStorage.getItem('token') || '')
+    const { deleteSchedule } = useContext(Context)
+  
+    useEffect(() => {
+      api.get('/dashbord/homeDash',{
+      headers: {
+        Authorization: `Bearer ${JSON.parse(token)}`
+      }
+    })
+    .then((response) => {
+        console.log(response.data)
+        setUser(response.data)
+    }).catch((error) => {
+      console.log(error)
+    })}, [token])
+
     const colunas = ['Nome', 'Idade', 'Email'];
     const dados = [
       { 'Nome': 'João', 'Idade': 25, 'Email': 'joao@example.com' },
@@ -20,12 +39,16 @@ function Dashboard() {
       // Adicione mais linhas de dados conforme necessário
     ];
 
+    const date = new Date(); 
+
     
 //   const [selectedDate, setSelectedDate] = useState(new Date());
 
 //   const handleDateChange = (date) => {
 //     setSelectedDate(date);
 //   };
+
+
 
   return (
     <div className="container-layout">
@@ -51,50 +74,50 @@ function Dashboard() {
 
             <div className='sessao-cards'>
             <CardInfo
-                titulo="Atendentes Online"
-                numero={42}
-                total={1000}
-                data="2023-08-01"
+                titulo="Atendentes"
+                numero={user.atendentesOnline}
+                total={0}
+                data={date}
                 // data={selectedDate.toDateString()} // Use a data selecionada aqui
-                cor="#805050" // Aqui você pode escolher a cor desejada
+                cor="#45214A" // Aqui você pode escolher a cor desejada
             />
             <CardInfo
                 titulo="Atendimentos Ativos"
-                numero={42}
-                total={1000}
+                numero={user.ativo}
+                total={0}
                 // data={selectedDate.toDateString()} // Use a data selecionada aqui
-                data="2023-08-01"
-                cor="#008080" // Aqui você pode escolher a cor desejada
+                data={date}
+                cor="#323050" // Aqui você pode escolher a cor desejada
             />
             <CardInfo
                 titulo="Finalizados"
-                numero={42}
-                total={1000}
+                numero={user.inativo}
+                total={0}
                 // data={selectedDate.toDateString()} // Use a data selecionada aqui
-                data="2023-08-01"
-                cor="#87cefa" // Aqui você pode escolher a cor desejada
+                data={date}
+                cor="#21445B" // Aqui você pode escolher a cor desejada
             />
             <CardInfo
                 titulo="Atendimentos Pendentes"
-                numero={42}
-                total={1000}
+                numero={user.aberto}
+                total={0}
                 // data={selectedDate.toDateString()} // Use a data selecionada aqui
-                data="2023-08-01"
-                cor="#ffbdfd" // Aqui você pode escolher a cor desejada
+                data={date}
+                cor="#1A6566" // Aqui você pode escolher a cor desejada
             />
             <CardInfo
                 titulo="Mensagens"
-                numero={42}
-                total={1000}
+                numero={user.atendimentos}
+                total={0}
                 // data={selectedDate.toDateString()} // Use a data selecionada aqui
-                data="2023-08-01"
-                cor="#ff6961" // Aqui você pode escolher a cor desejada
+                data={date}
+                cor="#5D8A66" // Aqui você pode escolher a cor desejada
             />
             </div>
             <div className='sessao-tabela'>
             <h1>Atendimentos por Atendentes</h1>
 
-            <TabelaAtendimentos />
+            <TabelaAtendimentos data={user.vendedor} />
 
             </div>
             <div>

@@ -26,7 +26,7 @@ export default function useAuth(){
     let msgType = 'success'
 
     try{
-      await api.post('users/register', user).then((response) => {
+      await api.post('/users/register', user).then((response) => {
       return response.data
       })
     }catch(error){

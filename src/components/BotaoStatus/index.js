@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './StatusButton.css';
 
+import api from '../../utils/api.js'
+
 function StatusButton() {
   const [status, setStatus] = useState('offline');
-
+  
+  
   const toggleStatus = () => {
     setStatus(status === 'online' ? 'offline' : 'online');
   };

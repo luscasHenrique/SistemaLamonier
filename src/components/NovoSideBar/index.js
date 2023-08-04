@@ -1,15 +1,22 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack, IoIosPerson,IoIosSearch, IoIosArrowDown,IoIosNotifications,  IoIosDocument, IoIosCalendar, IoMdStats, IoIosSettings, IoIosInformationCircle, IoIosLogOut, IoIosHome, IoIosPersonAdd, IoIosRefresh } from 'react-icons/io';
 import { IconContext } from "react-icons";
 import "./menuSidebarModules.css";
 import LogoLIFE from './Logo_LIFE.png';
 
+import { Context } from '../../context/UserContext';
+
 const SidebarMenu = () => {
   const [isSidebarActive, setSidebarActive] = useState(false);
   const [isSubMenuActive, setSubMenuActive] = useState(false);
+  const { logout } = useContext(Context)
 
   const subMenuRef = useRef();
+
+  function sair(){
+    logout();
+  }
 
   useEffect(() => {
     const handleMenuClick = (e) => {
@@ -231,7 +238,7 @@ const SidebarMenu = () => {
                   <li>
                     <Link to="/login">
                     <IoIosLogOut />
-                      <span className="text">Logout</span>
+                      <span className="text" onClick={sair}>Logout</span>
                     </Link>
                   </li>
                 </ul>

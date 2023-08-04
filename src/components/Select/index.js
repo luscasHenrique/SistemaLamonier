@@ -17,7 +17,7 @@ const Select = ({ label, name, value, options, onChange, required }) => {
           onChange={onChange}
           className="select-style"
         >
-          <option value="">Filtrar</option>
+          <option value="">Selecionar</option>
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

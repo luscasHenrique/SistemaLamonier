@@ -1,48 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import './CadastrarUsuario.css';
 import Inputs from '../../components/Inputs';
+import Select from '../../components/Select'
 import Sidebar from '../../components/NovoSideBar';
 import UserCard from '../../components/UserCard';
 import StatusButton from '../../components/BotaoStatus';
 
+import { Context } from '../../context/UserContext';
+
 function CadastroUsuario() {
-  // Estado para armazenar os dados do formulário
-  const [formData, setFormData] = useState({
-    nome: '',
-    cpf: '',
-    rg: '',
-    telefone: '',
-    email: '',
-    isAdmin: false,
-    isUser: false,
-    // Adicione mais campos conforme necessário
-  });
 
-  // Função para lidar com a mudança nos campos do formulário
-  const handleChange = (event) => {
-    const { name, type, checked } = event.target;
-
-    // Verifica qual checkbox está sendo marcado
-    if (type === 'checkbox') {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        isAdmin: name === 'isAdmin' ? checked : !checked,
-        isUser: name === 'isUser' ? checked : !checked,
-      }));
-    } else {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [name]: event.target.value,
-      }));
-    }
+  const [user, setUser] = useState({})
+  const { register } = useContext(Context)
+  // Creation of the Registration Object
+  function handleOnChange(e){
+      setUser({...user, [e.target.name]: e.target.value});
   };
-
-  // Função para lidar com o envio do formulário
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Aqui você pode enviar os dados do formulário para o backend ou fazer outras ações necessárias
-    console.log(formData);
-  };
+  // Function to submit the registration
+  function handleSubmit(e){
+      e.preventDefault()
+      // enviar o usuario para o banco de dados
+      // enviar o usuario para o banco de dados
+    register(user).then(response => {
+      console.log('Resposta do servidor após o registro:', response);
+    });
+  }
 
   return (
     <div className="container-layout">
@@ -66,14 +48,13 @@ function CadastroUsuario() {
         <div className="layout-cadastrar-usuario">
           <h3 className="titulo-form">Cadastro Usuario</h3>
           <h5 className="subtitulo-form">Preencha as informações abaixo:</h5>
-          <form className="container-form">
+          <form className="container-form" onSubmit={handleSubmit}>
               <div className="">
                 <Inputs
                   type="text"
                   label="Nome do Cliente"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  handleOnChange={handleOnChange}
                   placeholder="Digite o nome.."
                   required
                 />
@@ -85,8 +66,7 @@ function CadastroUsuario() {
                   type="number"
                   label="CPF"
                   name="cpf"
-                  value={formData.cpf}
-                  onChange={handleChange}
+                  handleOnChange={handleOnChange}
                   required
                 />
               </div>
@@ -95,8 +75,7 @@ function CadastroUsuario() {
                   type="number"
                   label="RG"
                   name="rg"
-                  value={formData.rg}
-                  onChange={handleChange}
+                  handleOnChange={handleOnChange}
                   required
                 />
               </div>
@@ -105,8 +84,7 @@ function CadastroUsuario() {
                   type="number"
                   label="Telefone"
                   name="fone"
-                  value={formData.fone}
-                  onChange={handleChange}
+                  handleOnChange={handleOnChange}
                   required
                 />
               </div>
@@ -115,8 +93,7 @@ function CadastroUsuario() {
                   type="email"
                   label="E-mail"
                   name="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  handleOnChange={handleOnChange}
                   required
                 />
               </div>
@@ -125,8 +102,7 @@ function CadastroUsuario() {
                   type="password"
                   label="Senha"
                   name="password"
-                  value={formData.password}
-                  onChange={handleChange}
+                  handleOnChange={handleOnChange}
                   required
                 />
               </div>
@@ -135,36 +111,22 @@ function CadastroUsuario() {
                   type="password"
                   label="Confirmar Senha"
                   name="confirmpassword"
-                  value={formData.confirmpassword}
-                  onChange={handleChange}
+                  handleOnChange={handleOnChange}
                   required
                 />
               </div>
             </div>
-              
-              <div className="form-check"  style={{ width:'100%' }}>
-                <label>
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="isAdmin"
-                    checked={formData.isAdmin}
-                    onChange={handleChange}
-                  />
-                  Administrador
-                </label>
-              </div>
-              <div className="form-check">
-                <label>
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    name="isVendedor"
-                    checked={formData.isUser}
-                    onChange={handleChange}
-                  />
-                  Vendedor
-                </label>
+              <div className="form-check-input">
+              <Select
+                label="Nível de acesso:"
+                name="nivel"
+                options={[
+                    { value: "adm", label: "Administrador" },
+                    { value: "vendedor", label: "Vendedor" },
+                ]}
+                onChange={handleOnChange}
+                value={user.nivel}
+              />
               </div>
             {/* Adicione mais campos Inputs conforme necessário */}
             <div className="container-botao-atualizar" >
